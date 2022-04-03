@@ -1,0 +1,20 @@
+name: TS Lint 💅
+
+on:
+  pull_request:
+    branches:
+      - '**'
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 14.x ]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run tests
+        run: cp ./src/env.example.ts ./src/env.ts
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+      - name: Linter
+        run: npm run tslint

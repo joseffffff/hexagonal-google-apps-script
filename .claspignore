@@ -1,0 +1,14 @@
+.idea/**
+node_modules/**
+
+src/env.example.ts
+src/env.local.ts
+src/env.staging.ts
+src/env.production.ts
+
+.clasp.local.json
+.clasp.staging.json
+.git
+tests/**
+babel.config.js
+coverage/**

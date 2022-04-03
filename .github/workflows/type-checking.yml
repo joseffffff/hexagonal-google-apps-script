@@ -1,0 +1,24 @@
+name: Type Checking 🤌
+
+on:
+  pull_request:
+    branches:
+      - '**'
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 14.x ]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run tests
+        run: cp ./src/env.example.ts ./src/env.ts
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+      - name: Type Checking
+        uses: andoshin11/typescript-error-reporter-action@v1.0.2
